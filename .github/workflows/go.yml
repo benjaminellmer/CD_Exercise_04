@@ -40,6 +40,7 @@ jobs:
         
     - run:
         echo $GIT_SHA
+        echo ${{ git.sha }} 
     
     - name: Build and push Docker images
       uses: docker/build-push-action@v4.0.0
