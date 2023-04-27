@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,8 +31,13 @@ jobs:
     - uses: actions/checkout@v3
     - run:
         echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-        
-    - run:
-        echo $GIT_SHA
-        
+    
+    - name: Docker Login
+      uses: docker/login-action@v2.1.0
+      with:
+        username: ${{ secrest.dockerUsername }}
+        password: ${{ secrets.dockerToken }}
+    
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v4.0.0
       
