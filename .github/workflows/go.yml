@@ -40,4 +40,7 @@ jobs:
     
     - name: Build and push Docker images
       uses: docker/build-push-action@v4.0.0
+      with:
+        tags: ${{ secrets.DOCKER_USERNAME }}/my-first-image:$(GIT_SHA)
+
       
