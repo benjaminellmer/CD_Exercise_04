@@ -29,7 +29,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run:
-        GIT_SHA="$(git rev-parse --short HEAD)"
-        echo "$GIT_SHA"
+        echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+        
+    - run:
+        echo $GIT_SHA
         
       
